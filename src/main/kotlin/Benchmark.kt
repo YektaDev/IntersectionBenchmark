@@ -21,17 +21,17 @@ fun main() {
     }
 
     printMeasurementsFor("Using the 'EVEN BETTER' algorithm (with the power of coroutines): ", printResult = false) {
-        with(arrays.first to arrays.second.toHashSet()) {
-            runBlocking {
-                val chunks = 50
-                val chunkSize = first.size / chunks
-                repeat(chunks) { iteration ->
-                    launch(Dispatchers.Default) {
-                        for (i in chunkSize * (iteration) until chunkSize * (iteration + 1)) {
-                            second.contains(first[i])
-                        }
-                    }.join()
-                }
+        val searcherSet = arrays.second.toHashSet()
+        val chunks = 50
+        val chunkSize = arrays.first.size / chunks
+
+        runBlocking {
+            repeat(chunks) { iteration ->
+                launch(Dispatchers.Default) {
+                    for (i in chunkSize * (iteration) until chunkSize * (iteration + 1)) {
+                        searcherSet.contains(arrays.first[i])
+                    }
+                }.join()
             }
         }
     }
