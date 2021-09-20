@@ -14,19 +14,19 @@ fun main() {
                 " filled with random integers in: [1,20000000]...\u001b[0m"
     )
 
-    printMeasurementsFor("Using the 'GOOD' algorithm (the desired situation): ", printResult = false) {
+    printMeasurementsFor("Using the \"nice\" algorithm (the desired situation): ", printResult = false) {
         with(arrays.first.toHashSet() to arrays.second.toHashSet()) {
             first.filter { second.contains(it) }
         }
     }
 
-    printMeasurementsFor("Using the 'EVEN BETTER' algorithm (with the power of coroutines): ", printResult = false) {
+    printMeasurementsFor("Using the \"BETTER\" algorithm (with the power of coroutines): ", printResult = false) {
         val searcherSet = arrays.second.toHashSet()
-        val chunks = 50
-        val chunkSize = arrays.first.size / chunks
+        val chunkSize = 10000
+        val chunksCount = arrays.first.size / chunkSize
 
         runBlocking {
-            repeat(chunks) { iteration ->
+            repeat(chunksCount) { iteration ->
                 launch(Dispatchers.Default) {
                     for (i in chunkSize * (iteration) until chunkSize * (iteration + 1)) {
                         searcherSet.contains(arrays.first[i])
