@@ -16,6 +16,10 @@ application {
     mainClass.set("BenchmarkKt")
 }
 
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt")
+}
+
 tasks.withType<Jar> {
     manifest {
         attributes["Main-Class"] = "BenchmarkKt"
