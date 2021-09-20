@@ -11,8 +11,9 @@ fun main() {
                 " filled with random integers...\u001b[0m"
     )
     printMeasurementsFor {
-        val (aHashSet, bHashSet) = arrays.first.toHashSet() to arrays.second.toHashSet()
-        println(aHashSet.filter { bHashSet.contains(it) })
+        with(arrays.first.toHashSet() to arrays.second.toHashSet()) {
+            println(first.filter { second.contains(it) })
+        }
     }
 }
 
