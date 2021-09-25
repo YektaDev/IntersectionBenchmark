@@ -1,2 +1,2 @@
 # IntersectionBenchmark
-Microbenchmarking the intersection of two random-filled lists, without the use of concurrency and intersect function.
+Microbenchmarking the intersection of two random-filled lists, with & without the use of concurrency.
